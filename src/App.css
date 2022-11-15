@@ -1,1 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@400;500;600;700&display=swap');
+
+.section {
+    background-color: aqua;
+    /* background-image: url('../src/assets/sectionimg.png'); */
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../src/assets/sectionimg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 50px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
+@media screen and (min-width:768px) {
+    .section{
+        background-image: url('');
+        /* background-color: aqua; */
+        padding-top: 100px;
+        height: auto;
+        justify-content: space-evenly;
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        gap: 30px;
+        /* flex-direction: column; */
+    }
+}
+
+/* @media screen and (min-width:1024px) {
+    .section {
+        flex-direction: row;
+    }
+} */
