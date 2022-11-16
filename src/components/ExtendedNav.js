@@ -9,10 +9,10 @@ const ExtendedNav = () => {
         animate={{y: 0}}
         initial={{y: -50}}
     >
-        <Link className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
+        <Link to={'/'} className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
             Home
         </Link>
-        <Link className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
+        <Link to={'/place'} className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
             Place to Stay
         </Link>
         <Link className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>

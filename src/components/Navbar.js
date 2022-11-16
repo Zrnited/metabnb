@@ -39,7 +39,7 @@ const Navbar = ({modal, setModal, setMoreLinks, moreLinks}) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/'} className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
+                    <Link to={'/place'} className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
                         Place to Stay
                     </Link>
                 </li>
