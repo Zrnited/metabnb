@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundColor: {
-        custompurple: '#A02279'
+        custompurple: '#A02279',
+        overlay: 'rgba(49, 49, 49, 0.4)'
       },
       textColor: {
         custompurple: '#A02279'
@@ -31,7 +32,9 @@ module.exports = {
         214: '214px',
         107: '107px',
         198: '198.32px',
-        99: '99px'
+        99: '99px',
+        90: '90%',
+        1: '1px'
 
       }
     },

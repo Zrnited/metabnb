@@ -9,19 +9,25 @@ import {AiFillStar} from 'react-icons/ai'
 import { homeNFTpictures } from '../components/nfthomepagedata'
 import frame from '../assets/frame.png';
 import Footer from '../components/Footer'
+import { motion } from 'framer-motion';
+import Modal from '../components/Modal'
 
 const Home = () => {
 
     console.log(homeNFTpictures);
+    const [modal, setModal] = React.useState(false);
+    const [moreLinks, setMoreLinks] = React.useState(false);
 
   return (
     <div>
-        <Navbar />
+        <Navbar setModal={setModal} modal={modal} moreLinks={moreLinks} setMoreLinks={setMoreLinks} />
+
+        {modal && <Modal setModal={setModal} modal={modal} />}
 
         <section className='section flex flex-row'>
             <div className='px-4 flex flex-col gap-3 md:w-1/2 md:px-0 md:max-w-646'>
                 <h1 className='text-white font-bold text-3xl tracking-wider px-3 md:text-black md:mb-2 md:px-0 md:text-4xl lg:mb-5 lg:text-5xl lg:leading-tight'>Rent a <span className='text-custompurple'>Place</span> away from <span className='text-custompurple'>Home</span> in the <span className='text-custompurple'>Metaverse</span></h1>
-                <p className='text-white text-sm px-3 leading-normal mb-6 md:text-black md:px-0 md:text-lg lg:text-2xl'>We provide you access to luxury and affordable houses in the metaverse, get a chance to turn your imagination to reality at your comfort zone.</p>
+                <p className='text-white text-sm px-3 leading-normal mb-6 md:text-black md:px-0 md:text-lg lg:text-xl'>We provide you access to luxury and affordable houses in the metaverse, get a chance to turn your imagination to reality at your comfort zone.</p>
                 <form className='flex flex-row pl-3 md:pl-0'>
                     <input 
                         type={'text'}
@@ -42,33 +48,36 @@ const Home = () => {
             </div>
         </section>
 
-        <section className='bg-custompurple flex flex-row justify-between py-2 px-4 md:mt-5 lg:justify-around'>
+        <section className='bg-custompurple flex flex-row justify-between py-2 px-4 md:mt-10 lg:justify-around'>
             {/* <p>Just to test</p> */}
             <img 
                 src={mbtoken}
                 alt='mb-token-logo'
-                className='w-1/4 md:w-222'
+                className='w-1/4 sm:w-36'
             />
             <img 
                 src={metamask}
                 alt='mb-token-logo'
-                className='w-1/4 md:w-218'
+                className='w-1/4 sm:w-36'
             />
             <img 
                 src={opensea}
                 alt='mb-token-logo'
-                className='w-1/4 md:w-198'
+                className='w-1/4 sm:w-36'
             />
         </section>
 
-        <section className='p-5 flex flex-col justify-between items-center gap-4 lg:p-10'>
+        <section className='p-5 flex flex-col justify-center items-center gap-4 lg:p-10'>
             <div>
-                <p className='text-xl font-extrabold tracking-wide mb-10 sm:text-2xl lg:text-3xl'>Inspiration for your next adventure</p>
+                <p className='text-xl text-center font-extrabold tracking-wide mb-4 sm:mb-8 sm:text-2xl lg:text-3xl'>Inspiration for your next adventure</p>
             </div>
-            <div className='flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-around'>
+            <div className='flex flex-col gap-6 w-auto sm:flex-row sm:flex-wrap sm:justify-center'>
                 {homeNFTpictures?.map((item)=>{
                     return (
-                        <div className='w-292 border border-gray-300 rounded-xl p-3 gap-3'>
+                        <motion.div 
+                            className='w-292 border border-gray-300 rounded-xl p-3 gap-3 cursor-pointer hover:shadow-lg'
+                            whileHover={{scale: 1.1}}
+                        >
                             <div>
                                 <img 
                                     src={item.image}
@@ -92,7 +101,7 @@ const Home = () => {
                                     <p className='text-xs'>available for 2weeks stay</p>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     )
                 })}
                 

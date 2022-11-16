@@ -7,7 +7,7 @@ import { BsTwitter } from 'react-icons/bs'
 const Footer = () => {
   return (
     <div className='bg-black p-8 flex flex-col-reverse gap-8 sm:flex-row justify-evenly'>
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-col gap-5 sm:gap-10 '>
             <img 
                 src={logowhite}
                 alt='logo-pic'
