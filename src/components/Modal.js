@@ -5,7 +5,19 @@ import metaicon from '../assets/metaicon.png';
 import walleticon from '../assets/walleticon.png';
 import { motion } from 'framer-motion';
 
-const Modal = ({setModal, modal}) => {
+const Modal = ({setModal, modal, getWallet}) => {
+
+    const walletData = [
+        {
+            name: 'Metamask',
+            image: metaicon
+        },
+        {
+            name: 'WalletConnect',
+            image: walleticon
+        }
+    ]
+    
   return (
     <div className='w-full h-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-20'>
         <div className='w-full h-full fixed top-0 bottom-0 left-0 right-0 bg-overlay' onClick={()=>setModal(!modal)}></div>
@@ -18,28 +30,26 @@ const Modal = ({setModal, modal}) => {
                 <div className='h-1 w-full bg-gray-200 mb-4'></div>
                 <div className='flex flex-col gap-2'>
                     <p className='text-sm'>Choose your preferred wallet:</p>
-                    <div className='flex justify-between items-center border border-gray-200 rounded-lg p-2 cursor-pointer hover:bg-gray-100 transition ease-in-out delay-100'>
-                        <div className='flex gap-3 items-center'>
-                            <img 
-                                src={metaicon}
-                                alt='meta-icon'
-                                className='w-10'
-                            />
-                            <strong className='text-lg'>Metamask</strong>
-                        </div>
-                        <i> <BiChevronRight /> </i>
-                    </div>
-                    <div className='flex justify-between items-center border border-gray-200 rounded-lg p-2 cursor-pointer hover:bg-gray-100 transition ease-in-out delay-100'>
-                        <div className='flex gap-3 items-center'>
-                            <img 
-                                src={walleticon}
-                                alt='meta-icon'
-                                className='w-10'
-                            />
-                            <strong className='text-lg'>WalletConnect</strong>
-                        </div>
-                        <i> <BiChevronRight /> </i>
-                    </div>
+                    {
+                        walletData?.map((currentWallet)=>{
+                            return (
+                                <div 
+                                    className='flex justify-between items-center border border-gray-200 rounded-lg p-2 cursor-pointer hover:bg-gray-100 transition ease-in-out delay-100'
+                                    onClick={()=>getWallet(currentWallet)}
+                                >
+                                    <div className='flex gap-3 items-center'>
+                                        <img 
+                                            src={currentWallet.image}
+                                            alt='meta-icon'
+                                            className='w-10'
+                                        />
+                                        <strong className='text-lg'>{currentWallet.name}</strong>
+                                    </div>
+                                    <i> <BiChevronRight /> </i>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </motion.div>
         </div>

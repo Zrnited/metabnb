@@ -35,8 +35,10 @@ module.exports = {
         99: '99px',
         90: '90%',
         1: '1px'
-
-      }
+      },
+      borderColor : {
+        custompurple: '#A02279'
+      },
     },
   },
   plugins: [],

@@ -4,8 +4,31 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import ExtendedNav from './ExtendedNav';
 import { motion } from 'framer-motion';
+// import { BiCheck } from 'react-icons/bi'
 
-const Navbar = ({modal, setModal, setMoreLinks, moreLinks}) => {
+const Navbar = ({modal, setModal, setMoreLinks, moreLinks, component, connectedWallet}) => {
+
+    // console.log(component);
+
+    const [screenSize, setScreenSize] = React.useState(null);
+
+    const scroll = () =>{
+        if(component === 'Home'){
+            if(moreLinks){
+                window.scrollTo(0, 3560);
+                setMoreLinks(false)
+            } else {
+                window.scrollTo(0, 2158);
+            }
+        } else {
+            return
+        }
+    }
+
+    window.addEventListener('resize', ()=>{
+        setMoreLinks(false);
+    })
+
   return (
     <header className='flex flex-col p-4 shadow-lg fixed left-0 right-0 top-0 bg-white z-20'>
         <nav className='flex flex-row justify-between items-center w-full lg:justify-around'>
@@ -17,10 +40,10 @@ const Navbar = ({modal, setModal, setMoreLinks, moreLinks}) => {
 
             <div className='flex flex-row items-center gap-3 sm:hidden'>
                 <button 
-                    className='bg-custompurple px-3 py-2 rounded-lg text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100'
+                    className={!connectedWallet ? 'bg-custompurple px-3 py-2 rounded-lg text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100' : 'bg-green-500 px-3 py-2 rounded-lg text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100'}
                     onClick={()=>setModal(!modal)}
                 >
-                    connect wallet
+                    {!connectedWallet ? 'Connect Wallet' : `${connectedWallet}`}
                 </button>
                 <motion.button 
                     className='text-lg' 
@@ -44,25 +67,25 @@ const Navbar = ({modal, setModal, setMoreLinks, moreLinks}) => {
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/'} className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
+                    <Link onClick={scroll} className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
                         NFTs
                     </Link>
                 </li>
                 <li>
-                    <Link to={'/'} className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
+                    <Link id='#community' className='hover:text-custompurple transition ease-in-out delay-100 lg:text-lg'>
                         Community
                     </Link>
                 </li>
             </ul>
             <button 
-                className='hidden sm:flex bg-custompurple px-3 py-2 rounded-lg text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100'
+                className={!connectedWallet ? 'hidden sm:flex bg-custompurple px-3 py-2 rounded-md text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100 tracking-wide' : 'hidden sm:flex bg-green-500 px-3 py-2 rounded-md text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100 tracking-wide'}
                 onClick={()=>setModal(!modal)}
             >
-                connect wallet
+                {!connectedWallet ? 'Connect Wallet' : `${connectedWallet}`}
             </button>
         </nav>
 
-        {moreLinks && <ExtendedNav />}
+        {moreLinks && <ExtendedNav scroll={scroll} />}
     </header>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
-const ExtendedNav = () => {
+const ExtendedNav = ({scroll}) => {
   return (
     <motion.nav 
         className='flex flex-col justify start mt-6 px-6 gap-3'
@@ -15,7 +15,7 @@ const ExtendedNav = () => {
         <Link to={'/place'} className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
             Place to Stay
         </Link>
-        <Link className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
+        <Link onClick={scroll} className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>
             NFTs
         </Link>
         <Link className='hover:text-custompurple tracking-wide transition ease-in-out delay-100'>

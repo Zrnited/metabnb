@@ -4,25 +4,38 @@ import grouppic from '../assets/grouppic.png'
 import mbtoken from '../assets/mbtoken.png'
 import metamask from '../assets/metamask.png'
 import opensea from '../assets/opensea.png'
-// import imageone from '../assets/imageone.png'
 import {AiFillStar} from 'react-icons/ai' 
 import { homeNFTpictures } from '../components/nfthomepagedata'
 import frame from '../assets/frame.png';
 import Footer from '../components/Footer'
 import { motion } from 'framer-motion';
 import Modal from '../components/Modal'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
-    console.log(homeNFTpictures);
+    // console.log(homeNFTpictures);
     const [modal, setModal] = React.useState(false);
     const [moreLinks, setMoreLinks] = React.useState(false);
+    const component = 'Home'
+    const [connectedWallet, setConnectedWallet] = React.useState(null);
+
+    window.addEventListener('load', ()=>{
+        window.scrollY(0, 0);
+    });
+
+    const getWallet =(e)=>{
+        // alert('Selected');
+        // console.log(e.name);
+        setConnectedWallet(e.name)
+        setModal(false);
+    }
 
   return (
     <div>
-        <Navbar setModal={setModal} modal={modal} moreLinks={moreLinks} setMoreLinks={setMoreLinks} />
+        <Navbar setModal={setModal} modal={modal} moreLinks={moreLinks} setMoreLinks={setMoreLinks} component={component} connectedWallet={connectedWallet} />
 
-        {modal && <Modal setModal={setModal} modal={modal} />}
+        {modal && <Modal setModal={setModal} modal={modal} getWallet={getWallet} />}
 
         <section className='section flex flex-row'>
             <div className='px-4 flex flex-col gap-3 md:w-1/2 md:px-0 md:max-w-646'>
@@ -67,21 +80,22 @@ const Home = () => {
             />
         </section>
 
-        <section className='p-5 flex flex-col justify-center items-center gap-4 lg:p-10'>
+        <section className='p-5 flex flex-col justify-center items-center gap-3 lg:p-10'>
             <div>
                 <p className='text-xl text-center font-extrabold tracking-wide mb-4 sm:mb-8 sm:text-2xl lg:text-3xl'>Inspiration for your next adventure</p>
             </div>
-            <div className='flex flex-col gap-6 w-auto sm:flex-row sm:flex-wrap sm:justify-center'>
+            <div className='flex flex-col gap-3 w-auto sm:flex-row sm:flex-wrap sm:justify-center'>
                 {homeNFTpictures?.map((item)=>{
                     return (
                         <motion.div 
-                            className='w-292 border border-gray-300 rounded-xl p-3 gap-3 cursor-pointer hover:shadow-lg'
+                            className='w-292 border border-gray-300 rounded-xl p-3 gap-3 cursor-pointer hover:shadow-lg lg:w-64'
                             whileHover={{scale: 1.1}}
                         >
                             <div>
                                 <img 
                                     src={item.image}
                                     alt='nft-pic'
+                                    className='lg:w-full'
                                 />
                             </div>
                             <div className='flex flex-row gap-2 justify-between mt-3'>
@@ -98,7 +112,7 @@ const Home = () => {
                                 </div>
                                 <div className='flex flex-col items-end gap-2'>
                                     <p className='text-xs font-bold'>IMBT per night</p>
-                                    <p className='text-xs'>available for 2weeks stay</p>
+                                    <p className='text-xs'>2weeks stay</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -113,7 +127,9 @@ const Home = () => {
                 <h1 className='text-3xl'> Metabnb NFTs </h1>
                 <p className='text-sm md:leading-loose'> Discover our NFT gift cards collection. Loyal customers gets amazing gift cards which are traded as NFTs. These NFTs gives our cutomer access to loads of our exclusive services. </p>
                 <button className='bg-white py-2 rounded-sm text-sm text-custompurple text-center opacity-90 w-36 hover:opacity-100 transition ease-in-out delay-100'>
-                learn more
+                    <Link to={'/place'}>
+                        Learn
+                    </Link>
                 </button>
             </div>
             <div className='sm:w-2/3 md:w-480'>

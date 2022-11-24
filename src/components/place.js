@@ -17,51 +17,67 @@ import imagesixteen from '../assets/imagesixteen.png'
 
 export const PlacePictures = [
     {
-        image: imagefive
+        image: imagefive,
+        type: 'Restaurant'
     },
     {
-        image: imagesix
+        image: imagesix,
+        type: 'Cottage'
     },
     {
-        image: imageseven
+        image: imageseven,
+        type: 'Castle'
     },
     {
-        image: imageeight
+        image: imageeight,
+        type: 'Fantast City'
     },
     {
-        image: imageone
+        image: imageone,
+        type: 'Beach'
     },
     {
-        image: imagetwo
+        image: imagetwo,
+        type: 'Carbins'
     },
     {
-        image: imagethree
+        image: imagethree,
+        type: 'Off-grid'
     },
     {
-        image: imagefour
+        image: imagefour,
+        type: 'Farm'
     },
     {
-        image: imagenine
+        image: imagenine,
+        type: 'Restaurant'
     },
     {
-        image: imageten
+        image: imageten,
+        type: 'Cottage'
     },
     {
-        image: imageeleven
+        image: imageeleven,
+        type: 'Castle'
     },
     {
-        image: imagetwelve
+        image: imagetwelve,
+        type: 'Fantast City'
     },
     {
-        image: imagethirteen
+        image: imagethirteen,
+        type: 'Beach'
     },
     {
-        image: imagefourteen
+        image: imagefourteen,
+        type: 'Carbins'
     },
     {
-        image: imagefifteen
+        image: imagefifteen,
+        type: 'Off-grid'
     },
     {
-        image: imagesixteen
+        image: imagesixteen,
+        type: 'Farm'
     }
 ]
