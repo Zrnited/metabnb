@@ -17,18 +17,30 @@ const Place = () => {
         window.scrollTo(0, 0);
     });
 
+    const currentPage = 'place';
+
     const [filter, setFilter] = React.useState(null);
     // console.log(filter);
     const [array, setArray] = React.useState();
     const filteredArray = PlacePictures?.filter((current)=>{
         return current?.type === filter; 
     })
+    const [wallet, setWallet] = React.useState(null)
     const component = 'Place'
     // console.log(filteredArray)
 
     const [filterOptions, setFilterOptions] = React.useState(false);
     const [modal, setModal] = React.useState(false);
     const [moreLinks, setMoreLinks] = React.useState(false);
+
+    React.useLayoutEffect(()=>{
+        const getWallet = JSON.parse(window.sessionStorage.getItem('wallet'))
+        if(getWallet){
+            setWallet(getWallet)
+        } else {
+            setWallet(null);
+        }
+    }, [])
 
     React.useEffect(()=>{
         if(filter === null){
@@ -40,7 +52,7 @@ const Place = () => {
 
   return (
     <div>
-        <Navbar setModal={setModal} modal={modal} moreLinks={moreLinks} setMoreLinks={setMoreLinks} component={component} />
+        <Navbar connectedWallet={wallet} setModal={setModal} modal={modal} moreLinks={moreLinks} setMoreLinks={setMoreLinks} component={component} currentPage={currentPage} />
         {modal && <Modal setModal={setModal} modal={modal} />}
         <div className='mt-24 flex flex-row justify-around md:items-center md:px-5'>
             <div className='relative w-1/2 md:hidden'>
@@ -52,7 +64,7 @@ const Place = () => {
                     <i>{filterOptions ? <BiChevronUp /> : <BiChevronDown />}</i>
                 </div>
 
-                {filterOptions && <ul className='absolute top-12 bg-white shadow-lg p-4 w-full flex flex-col gap-1'>
+                {filterOptions && <ul className='absolute top-12 bg-white shadow-lg p-4 w-full flex flex-col gap-1 z-20'>
                     {filter !== null && <li 
                         className='text-sm transition ease-in-out delay-100 cursor-pointer p-2 hover:bg-custompurple hover:text-white rounded-lg'
                         onClick={(e)=>{
