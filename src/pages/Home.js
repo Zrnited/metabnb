@@ -58,6 +58,13 @@ const Home = () => {
     }
   };
 
+  //hiding scrollbar
+  if(moreLinks){
+    document.body.classList.add('active');
+  } else {
+    document.body.classList.remove('active');
+  }
+
   React.useLayoutEffect(() => {
     const getWallet = JSON.parse(window.sessionStorage.getItem("wallet"));
     if (getWallet) {

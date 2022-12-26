@@ -40,24 +40,6 @@ const Navbar = ({
         <img src={metalogo} alt="logo" className="w-36 sm:w-40" />
 
         <div className="flex flex-row items-center gap-3 sm:hidden">
-          <button
-            className={
-              !connectedWallet
-                ? "bg-custompurple px-3 py-2 rounded-lg text-sm text-white opacity-90 hover:opacity-100 transition ease-in-out delay-100"
-                : "bg-green-500 flex flex-row gap-2 tracking-wide items-center px-3 py-2 rounded-lg text-sm text-white font-bold opacity-90 hover:opacity-100 transition ease-in-out delay-100"
-            }
-            // onClick={() => setModal(!modal)}
-            onClick={()=>{
-              if (currentPage === 'place'){
-                return
-              } else {
-                setModal(!modal);
-              }
-            }}
-          >
-            {connectedWallet && <img src={connectedWallet?.image} alt='wallet-logo' width={'25px'}/>}
-            {!connectedWallet ? "Connect Wallet" : `${connectedWallet.name}`}
-          </button>
           <motion.button
             className="text-lg"
             onClick={() => setMoreLinks(!moreLinks)}
@@ -125,7 +107,7 @@ const Navbar = ({
         </button>
       </nav>
 
-      {moreLinks && <ExtendedNav scroll={scroll} />}
+      {moreLinks && <ExtendedNav scroll={scroll} connectedWallet={connectedWallet} modal={modal} setModal={setModal} currentPage={currentPage}/>}
     </header>
   );
 };
